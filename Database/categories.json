@@ -1,0 +1,5 @@
+{"_id":{"$oid":"64328e3086ce67ca1edc1c49"},"name":"iPhone"}
+{"_id":{"$oid":"64328e3086ce67ca1edc1c4c"},"name":"Samsung"}
+{"_id":{"$oid":"64328e3086ce67ca1edc1c4f"},"name":"HTC"}
+{"_id":{"$oid":"64328e3086ce67ca1edc1c52"},"name":"Huawei"}
+{"_id":{"$oid":"64328e3086ce67ca1edc1c55"},"name":"Nokia"}
