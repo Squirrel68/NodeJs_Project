@@ -10,6 +10,9 @@ const postLogin = async (req, res) => {
   if (email == "" || password == "") {
     error = "Email va mat khau khong dc de trong";
   } else if (users.length) {
+    //cap quyen
+    req.session.email = email;
+    req.session.password = password;
     res.redirect("/admin/dashboard");
   } else {
     error = "Tai khoan khong hop le!";
@@ -19,7 +22,8 @@ const postLogin = async (req, res) => {
 };
 
 const logout = (req, res) => {
-  res.send("logout");
+  req.session.destroy();
+  res.redirect("/admin/login");
 };
 
 module.exports = {

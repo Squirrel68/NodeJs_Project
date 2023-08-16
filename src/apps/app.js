@@ -1,12 +1,33 @@
 const express = require("express");
 const app = express();
+const session = require("express-session");
 const config = require("config");
+
+//Session
+app.set("trust proxy", 1); // trust first proxy
+app.use(
+  session({
+    secret: config.get("app.session_key"),
+    resave: false,
+    saveUninitialized: true,
+    cookie: { secure: false },
+  })
+);
+
+//Form
 app.use(express.urlencoded({ extended: true }));
+
+//Static folder
 app.use("/static", express.static(config.get("app.static_folder")));
+
+//View
 app.set("views", config.get("app.view_folder"));
 app.set("view engine", config.get("app.view_engine"));
 
-//Router
-app.use(require(config.get("app.router")));
+//Share Menu
+app.use(require("./middlewares/cart"));
+app.use(require("./middlewares/share"));
 
+//Router always final
+app.use(require(config.get("app.router")));
 module.exports = app;
